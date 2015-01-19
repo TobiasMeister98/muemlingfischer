@@ -2,6 +2,8 @@
 
 <html lang="de">
     <head>
+        <meta charset="utf-8">
+        
         <title>Mümlingfischer</title>
         
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans'>
