@@ -7,11 +7,17 @@
             default:
                 include($path."home.html");
                 break;
-            case "impressum":
-                include($path."impressum.html");
+            case "galerie":
+                include($path."galerie.html");
+                break;
+            case "links":
+                include($path."links.html");
                 break;
             case "kontakt":
                 include($path."kontakt.html");
+                break;
+            case "impressum":
+                include($path."impressum.html");
                 break;
         }
     } else {

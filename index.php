@@ -2,16 +2,12 @@
 
 <html lang="de">
     <head>
-        <meta charset="UTF-8">
-        
         <title>Mümlingfischer</title>
         
         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans'>
         <link rel="stylesheet" href="css/global.css">
         
         <link rel="icon" href="resources/icon/favicon.ico">
-        
-        <?php $path = "docs/"; ?>
     </head>
     
     <body>
@@ -21,7 +17,7 @@
             </header>
             
             <nav class="nav-main">
-                <?php include($path."nav.html"); ?>
+                <?php include("nav.html"); ?>
             </nav>
                         
             <main class="content">
@@ -29,7 +25,7 @@
             </main>
             
             <footer class="footer-main">
-                <?php include($path."footer.html"); ?>
+                <?php include("footer.html"); ?>
             </footer>
         </div>
     </body>
