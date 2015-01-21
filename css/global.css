@@ -1,7 +1,6 @@
 html {
     overflow-y: scroll;
 }
-
 body {
     font: 1em "Open Sans", sans-serif;
     margin: 0;
@@ -10,30 +9,25 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-
 .wrapper-main {
     width: 980px;
     margin: 0 auto;
 }
-
 .header {
     background-image: url("../resources/images/header.png");
     background-repeat: no-repeat;
     height: 200px;   
 }
-
 .header a {
     display: block;
     height: 100%;
 }
-
 .nav-main {
     background-color: #000;
     width: 100%;
     height: 70px;
     color: #fff;
 }
-
 .nav-main .logo {
     float: left;
     height: 40px;
@@ -44,22 +38,18 @@ body {
     color: #fff;
     text-transform: uppercase;
 }
-
 .nav-main .logo:hover {
     background-color: #444;
 }
-
 .nav-main > ul {
     margin: 0;
     padding: 0;
     float: left;
     list-style-type: none;
 }
-
 .nav-main > ul > li {
     float: left;
 }
-
 .nav-item {
     display: inline-block;
     padding: 15px 20px;
@@ -68,20 +58,16 @@ body {
     color: #fff;
     text-decoration: none;
 }
-
 .nav-item:hover {
     background-color: #444;
 }
-
 .nav-item:focus {
     background-color: #444;
 }
-
 .nav-item:focus ~ .nav-content {
     max-height: 400px;
     transition: max-height 0.4s ease-in;
 }
-
 .nav-content {
     position: absolute;
     top: 270px;
@@ -89,54 +75,44 @@ body {
     background-color: #222;
     max-height: 0;
 }
-
 .nav-content a {
     color: #fff;
     text-decoration: none;
 }
-
 .nav-content a:hover {
     text-decoration: underline;
 }
-
 .nav-sub {
     padding: 20px;
 }
-
 .nav-sub ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
 }
-
 .nav-sub ul li a {
     display: inline-block;
     padding: 5px 0;
 }
-
 .content {
     background-color: #fff;
     padding: 30px;
 }
-
 .footer-main {
     background-color: #000;
     width: 100%;
     height: 70px;
     color: #fff;
 }
-
 .footer-main > ul {
     margin: 0;
     padding: 0;
     float: right;
     list-style-type: none;
 }
-
 .footer-main > ul > li {
     float: left;
 }
-
 .footer-item {
     display: inline-block;
     padding: 15px 20px;
@@ -145,27 +121,21 @@ body {
     color: #fff;
     text-decoration: none;
 }
-
 .footer-item:hover {
     background-color: #444;
 }
-
 .footer-item:focus {
     background-color: #444;
 }
-
 .contact-main {
     line-height: 150%;
 }
-
 .contact-spacer {
     height: 10px;
 }
-
 .contact-main table tr td {
     padding-right: 40px;
 }
-
 @media (max-width: 980px) {
     body {
         background: none;
