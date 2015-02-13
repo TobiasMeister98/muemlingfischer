@@ -19,6 +19,9 @@
             case "impressum":
                 include($path."impressum.html");
                 break;
+            case "login":
+                include("login.php");
+                break;
         }
     } else {
         include($path."home.html");

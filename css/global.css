@@ -127,14 +127,20 @@ body {
 .footer-item:focus {
     background-color: #444;
 }
+.table-spacer {
+    height: 10px;
+}
 .contact-main {
     line-height: 150%;
 }
-.contact-spacer {
-    height: 10px;
-}
-.contact-main table tr td {
+.contact-main td {
     padding-right: 40px;
+}
+.login-main td {
+    padding-right: 40px;
+}
+.login-main input[type="submit"] {
+    padding: 10px;
 }
 @media (max-width: 980px) {
     body {
