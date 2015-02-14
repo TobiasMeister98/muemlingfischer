@@ -7,6 +7,18 @@
             default:
                 include($path."home.html");
                 break;
+            case "login":
+                include("login.php");
+                break;
+            case "logout":
+                include("logout.php");
+                break;
+            case "redirect":
+                include("redirect.php");
+                break;
+            case "profil":
+                include("profil.php");
+                break;
             case "galerie":
                 include($path."galerie.html");
                 break;
@@ -18,9 +30,6 @@
                 break;
             case "impressum":
                 include($path."impressum.html");
-                break;
-            case "login":
-                include("login.php");
                 break;
         }
     } else {

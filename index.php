@@ -16,20 +16,20 @@
     
     <body>
         <div class="wrapper-main">
-            <header class="header">
+            <header class="header-main">
                 <a href="index.php"></a>
             </header>
             
             <nav class="nav-main">
                 <?php include("nav.html"); ?>
             </nav>
-                        
-            <main class="content">
+            
+            <main class="content-main">
                 <?php include("sites.php"); ?>
             </main>
             
             <footer class="footer-main">
-                <?php include("footer.html"); ?>
+                <?php include("footer.php"); ?>
             </footer>
         </div>
     </body>

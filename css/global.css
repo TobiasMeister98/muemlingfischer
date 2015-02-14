@@ -9,16 +9,19 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+.table-spacer {
+    height: 10px;
+}
 .wrapper-main {
     width: 980px;
     margin: 0 auto;
 }
-.header {
+.header-main {
     background-image: url("../resources/images/header.png");
     background-repeat: no-repeat;
     height: 200px;   
 }
-.header a {
+.header-main a {
     display: block;
     height: 100%;
 }
@@ -94,7 +97,7 @@ body {
     display: inline-block;
     padding: 5px 0;
 }
-.content {
+.content-main {
     background-color: #fff;
     padding: 30px;
 }
@@ -126,9 +129,6 @@ body {
 }
 .footer-item:focus {
     background-color: #444;
-}
-.table-spacer {
-    height: 10px;
 }
 .contact-main {
     line-height: 150%;

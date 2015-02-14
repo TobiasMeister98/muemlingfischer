@@ -1,10 +1,14 @@
 <?php
 
+if (isset($_SESSION["isLoggedIn"])) {
+    exit;
+}
+
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username_form = $_POST["username"];
     $password_form = $_POST["password"];
     
-    $sha_pass = strtoupper(sha1($password_form));
+    $sha_pass = sha1($password_form);
     
     $servername = "localhost";
     $username = "root";
@@ -15,24 +19,24 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     if ($conn->connect_error) die("Connection failed: ".$conn->connect_error);
     
-    $sql = "SELECT username FROM `login`";
-    $username_db = $conn->query($sql);
-
-    $sql = "SELECT HEX(password) FROM `login`";
-    $password_db = $conn->query($sql);
-
-    if ($username_db->num_rows > 0 && $password_db->num_rows > 0) {
-        $username_row = $username_db->fetch_assoc();
-        $password_row = $password_db->fetch_assoc();
+    $sql = "SELECT username, HEX(password) FROM login WHERE username LIKE '$username_form' LIMIT 1";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        if ($row["HEX(password)"] == strtoupper($sha_pass)) {
+            $_SESSION["isLoggedIn"] = true;
+            
+            header("location: ?section=redirect");
+            exit;
+        } else {
+            echo "<span style='color: #f00; font-weight: bold;'>Nutzername oder Passwort falsch!</span>";
+        }
     } else {
-        echo "SQL-Error";
+        echo "<span style='color: #f00; font-weight: bold;'>Nutzername oder Passwort falsch!</span>";
     }
-    // FIX!!! - IMPORTANT!!!!!!!!
-    if (in_array($username_form, $username_row) && in_array($sha_pass, $password_row)) {
-        echo "login correct!";
-    } else {
-        echo "you fucked up!";
-    }
+    
+    $conn->close();
 }
 
 ?>
@@ -46,7 +50,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         <table>
             <tr>
                 <td>Benutzername:</td>
-                <td><input type="text" name="username"></td>
+                <td><input type="text" name="username" maxlength="50"></td>
             </tr>
             <tr>
                 <td>Passwort:</td>
