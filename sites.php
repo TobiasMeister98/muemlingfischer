@@ -17,7 +17,10 @@
                 include("redirect.php");
                 break;
             case "profil":
-                include("profil.php");
+                include("profile.php");
+                break;
+            case "management":
+                include("management.php");
                 break;
             case "galerie":
                 include($path."galerie.html");

@@ -32,7 +32,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 ?>
 
-<h1>Login</h1>
+<h1>Register</h1>
 
 <br>
 

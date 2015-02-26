@@ -9,17 +9,26 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+.table-main {
+    
+}
+.table-row {
+    
+}
+.table-column {
+    
+}
 .table-spacer {
     height: 10px;
 }
 .wrapper-main {
-    width: 980px;
+    width: 1000px;
     margin: 0 auto;
 }
 .header-main {
     background-image: url("../resources/images/header.png");
     background-repeat: no-repeat;
-    height: 200px;   
+    height: 200px;
 }
 .header-main a {
     display: block;
@@ -142,7 +151,7 @@ body {
 .login-main input[type="submit"] {
     padding: 10px;
 }
-@media (max-width: 980px) {
+@media (max-width: 1000px) {
     body {
         background: none;
     }
