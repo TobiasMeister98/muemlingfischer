@@ -1,7 +1,13 @@
 <?php
 
+$action = "ausgeloggt";
+
+if (isset($_SESSION["isLoggedIn"])) {
+    $action = "eingeloggt";
+}
+
 echo "<pre>
-Erfolgreich ausgeloggt! Sie werden in Kürze weitergeleitet...
+Erfolgreich $action! Sie werden in Kürze weitergeleitet...
 Falls Sie nicht automatisch weitergeleitet werden, bitte <a href='?section=home'>HIER</a> klicken!
 </pre>";
 
