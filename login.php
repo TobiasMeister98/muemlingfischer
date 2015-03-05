@@ -1,6 +1,7 @@
 <?php
 
 if (isset($_SESSION["isLoggedIn"])) {
+    header("location: ?section=home");
     exit;
 }
 
