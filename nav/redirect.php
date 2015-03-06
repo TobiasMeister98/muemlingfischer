@@ -8,9 +8,9 @@ if (isset($_SESSION["isLoggedIn"])) {
 
 echo "<pre>
 Erfolgreich $action! Sie werden in Kürze weitergeleitet...
-Falls Sie nicht automatisch weitergeleitet werden, bitte <a href='?section=home'>HIER</a> klicken!
+Falls Sie nicht automatisch weitergeleitet werden, bitte <a href='?resource=docs&section=home'>HIER</a> klicken!
 </pre>";
 
-header("refresh: 3; url= ?section=home");
+header("refresh: 3; url= ?resource=docs&section=home");
 
 ?>

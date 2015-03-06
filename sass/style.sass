@@ -4,10 +4,16 @@ html
 body
     font: 1em "Open Sans", sans-serif
     margin: 0
-    background-image: url("../resources/muemling.jpg")
+    background-image: url("../img/muemling.jpg")
     background-repeat: no-repeat
     background-attachment: fixed
     background-size: cover
+
+td
+    padding-right: 40px
+
+input[type="submit"]
+    padding: 10px
 
 .table-main 
     
@@ -18,15 +24,43 @@ body
 .table-column
     
 
-.table-spacer
-    height: 10px
+.table-inline-heading
+    font-weight: bold
+    font-size: 1.4em
 
 .wrapper-main
     width: 1000px
     margin: 0 auto
 
+.container
+    padding: 20px
+    background-color: #f6f6f6
+    border: 1px solid #444
+    border-radius: 5px
+
+.container-small
+    padding: 10px
+    background-color: #f6f6f6
+    border: 1px solid #444
+    border-radius: 3px
+
+.spacer
+    margin-top: 20px
+    
+.spacer-small
+    height: 10px
+
+.flush-top
+    margin-top: 0
+
+.content-right
+    text-align: right
+
+.content-center
+    text-align: center
+
 .header-main
-    background-image: url("../resources/header.png")
+    background-image: url("../img/header.png")
     background-repeat: no-repeat
     height: 200px
 
@@ -139,16 +173,6 @@ body
 
 .contact-main
     line-height: 150%
-
-    td
-        padding-right: 40px
-
-.login-main
-    td
-        padding-right: 40px
-
-    input[type="submit"]
-        padding: 10px
 
 @media (max-width: 1000px)
     body

@@ -23,15 +23,15 @@
         </header>
 
         <nav class="nav-main">
-            <?php include("nav.html"); ?>
+            <?php include("nav/nav.html"); ?>
         </nav>
 
         <main class="content-main">
-            <?php include("sites.php"); ?>
+            <?php include("nav/sites.php"); ?>
         </main>
 
         <footer class="footer-main">
-            <?php include("footer.php"); ?>
+            <?php include("nav/footer.php"); ?>
         </footer>
     </div>
 </body>
