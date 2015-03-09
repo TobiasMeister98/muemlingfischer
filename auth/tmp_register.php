@@ -5,26 +5,19 @@ if (isset($_SESSION["isLoggedIn"])) {
 }
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
-    $username_form = $_POST["username"];
-    $password_form = $_POST["password"];
+    $username = $_POST["username"];
+    $password = $_POST["password"];
     
-    $sha_pass = sha1($password_form);
+    $sha_pass = sha1($password);
     
-    $servername = "localhost";
-    $username = "root";
-    $password = "DvsK*12G";
-    $dbname = "muemlingfischer";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    if ($conn->connect_error) die("Connection failed: ".$conn->connect_error);
+    include("db_auth.php");
     
-    $sql = "INSERT INTO login (username, password) VALUES ('$username_form', HEX('$sha_pass')";
+    $sql = "INSERT INTO users (username, password) VALUES ('$username', HEX('$sha_pass')";
     
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: ".$sql."<br>".$conn->error;
     }
     
     $conn->close();
