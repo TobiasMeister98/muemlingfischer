@@ -18,6 +18,20 @@ if (isset($_POST["email"]) || isset($_POST["email2"])) {
     }
 }
 
+if (isset($_POST["nickname"])) {
+    $nickname = $_POST["nickname"];
+    
+    if ($nickname != "") {
+        $search = array("Ä", "Ö", "Ü", "ä", "ö", "ü", "ß");
+        $replace = array("&Auml;", "&Ouml;", "&Uuml;", "&auml;", "&ouml;", "&uuml;", "&szlig;");
+        $nickname = str_replace($search, $replace, $nickname);
+        
+        $change[count($change)] = "nickname";
+        
+        $success[count($success)] = "Nickname erfolgreich geändert.";
+    }
+}
+
 if (isset($_POST["password"]) || isset($_POST["password2"])) {
     $password = $_POST["password"];
     $password2 = $_POST["password2"];
@@ -36,12 +50,26 @@ if (count($change) > 0) {
     $queries = array();
     
     if (in_array("email", $change)) {
-        $queries[count($queries)] = "UPDATE users SET email='$email' WHERE username='".$_SESSION["username"]."' LIMIT 1";
+        $queries[count($queries)] = "UPDATE users
+                                        SET email = '$email'
+                                        WHERE username = '".$_SESSION["username"]."'
+                                        LIMIT 1;";
     }
+    
+    if (in_array("nickname", $change)) {
+        $queries[count($queries)] = "UPDATE users
+                                        SET nickname = '$nickname'
+                                        WHERE username = '".$_SESSION["username"]."'
+                                        LIMIT 1;";
+    }
+    
     if (in_array("password", $change)) {
         $sha_pass = sha1($password);
         
-        $queries[count($queries)] = "UPDATE users SET password=UNHEX('$sha_pass') WHERE username='".$_SESSION["username"]."' LIMIT 1";
+        $queries[count($queries)] = "UPDATE users
+                                        SET password = UNHEX('$sha_pass')
+                                        WHERE username = '".$_SESSION["username"]."'
+                                        LIMIT 1;";
     }
     
     include("auth/db_auth.php");
@@ -53,17 +81,35 @@ if (count($change) > 0) {
         $sql .= $queries[$x];
         
         if ($x < count($queries) - 1) {
-            $sql .= " UNION ";
+            $sql .= " ";
         }
     }
     
     // #### execute query
-    if ($conn->query($sql) === true) {
-        if (in_array("email", $change)) {
-            $_SESSION["email"] = $email;
+    if (count($queries) == 0) {
+        if ($conn->query($sql) === true) {
+            if (in_array("email", $change)) {
+                $_SESSION["email"] = $email;
+            }
+
+            if (in_array("nickname", $change)) {
+                $_SESSION["nickname"] = $nickname;
+            }
+        } else {
+            echo "Error: ".$sql."<br>".$conn->error;
         }
     } else {
-        echo "Error: ".$sql."<br>".$conn->error;
+        if ($conn->multi_query($sql) === true) {
+            if (in_array("email", $change)) {
+                $_SESSION["email"] = $email;
+            }
+
+            if (in_array("nickname", $change)) {
+                $_SESSION["nickname"] = $nickname;
+            }
+        } else {
+            echo "Error: ".$sql."<br>".$conn->error;
+        }
     }
 
     $conn->close();
@@ -96,44 +142,63 @@ for ($x = 0; $x < count($success); $x++) {
                 <td>Email:</td>
                 <td><?php echo $_SESSION["email"]; ?></td>
             </tr>
+            <tr>
+                <td>Nickname:</td>
+                <td><?php echo $_SESSION["nickname"]; ?></td>
+            </tr>
         </table>
     </div>
 
-    <div class="spacer"></div>
+    <div class="spacer-small"></div>
 
     <div class="container">
         <h2 class="flush-top">Email ändern</h2>
 
         <table>
             <tr>
-                <td>Email eingeben:</td>
+                <td>Neue Email:</td>
                 <td><input type="email" name="email" maxlength="254"></td>
             </tr>
             <tr>
-                <td>Email wiederholen:</td>
+                <td>Neue Email wiederholen:</td>
                 <td><input type="email" name="email2" maxlength="254"></td>
             </tr>
         </table>
     </div>
 
-    <div class="spacer"></div>
+    <div class="spacer-small"></div>
+
+    <div class="container">
+        <h2 class="flush-top">Nickname ändern</h2>
+
+        <table>
+            <tr>
+                <td>Neuer Nickname:</td>
+                <td><input type="text" name="nickname" maxlength="25"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="spacer-small"></div>
 
     <div class="container">
         <h2 class="flush-top">Passwort ändern</h2>
 
         <table>
             <tr>
-                <td>Passwort eingeben:</td>
+                <td>Neues Passwort:</td>
                 <td><input type="password" name="password"></td>
             </tr>
             <tr>
-                <td>Passwort wiederholen:</td>
+                <td>Neues Passwort wiederholen:</td>
                 <td><input type="password" name="password2"></td>
             </tr>
         </table>
     </div>
 
-    <div class="spacer content-right">
+    <div class="spacer-small"></div>
+    
+    <div class="content-right">
         <input type="submit" value="Änderungen speichern">
     </div>
 </form>

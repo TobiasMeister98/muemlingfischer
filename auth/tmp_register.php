@@ -12,7 +12,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     
     include("db_auth.php");
     
-    $sql = "INSERT INTO users (username, password) VALUES ('$username', HEX('$sha_pass')";
+    $sql = "INSERT INTO users (username, password)
+            VALUES ('$username', HEX('$sha_pass')";
     
     if ($conn->query($sql) === true) {
         echo "New record created successfully";

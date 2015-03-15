@@ -8,7 +8,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
     
     include("db_auth.php");
     
-    $sql = "SELECT username, HEX(password), email FROM users WHERE username='$username' LIMIT 1";
+    $sql = "SELECT username, HEX(password), email, nickname
+            FROM users
+            WHERE username='$username'
+            LIMIT 1";
     $result = $conn->query($sql);
     
     $row = $result->fetch_assoc();
@@ -17,6 +20,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         $_SESSION["isLoggedIn"] = true;
         $_SESSION["username"] = $row["username"];
         $_SESSION["email"] = $row["email"];
+        $_SESSION["nickname"] = $row["nickname"];
 
         $conn->close();
 
