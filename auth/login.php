@@ -1,4 +1,4 @@
-<?php if (isset($_SESSION["isLoggedIn"])) { header("location: ?resource=auth&section=notloggedin"); exit; } else {
+<?php if (isset($_SESSION["isLoggedIn"])) { header("location: ?resource=docs&section=home"); exit; } else {
 
 if (isset($_POST["username"]) && isset($_POST["password"])) {
     $username = $_POST["username"];
@@ -33,7 +33,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 <h1>Login</h1>
 
-<form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
     <table>
         <tr>
             <td>Benutzername:</td>

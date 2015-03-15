@@ -1,44 +1,82 @@
-<?php if (!(isset($_SESSION["isLoggedIn"]))) { header("location: ?section=notloggedin"); exit; } else { ?>
+<?php if (!(isset($_SESSION["isLoggedIn"]))) { header("location: ?section=notloggedin"); exit; } else {
 
-<script src="js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">
-    tinymce.init({
-        selector: "textarea",
-        theme: "modern",
-        language: "de",
-        height: 500,
-        browser_spellcheck: true,
-        content_css: "http://fonts.googleapis.com/css?family=Open+Sans",
-        font_formats: "Andale Mono=andale mono,times;"+
-            "Arial=arial,helvetica,sans-serif;"+
-            "Arial Black=arial black,avant garde;"+
-            "Book Antiqua=book antiqua,palatino;"+
-            "Comic Sans MS=comic sans ms,sans-serif;"+
-            "Courier New=courier new,courier;"+
-            "Georgia=georgia,palatino;"+
-            "Helvetica=helvetica;"+
-            "Impact=impact,chicago;"+
-            "Open Sans=Open Sans, sans-serif;"+
-            "Symbol=symbol;"+
-            "Tahoma=tahoma,arial,helvetica,sans-serif;"+
-            "Terminal=terminal,monaco;"+
-            "Times New Roman=times new roman,times;"+
-            "Trebuchet MS=trebuchet ms,geneva;"+
-            "Verdana=verdana,geneva;"+
-            "Webdings=webdings;"+
-            "Wingdings=wingdings,zapf dingbats",
-        plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-            "searchreplace wordcount visualblocks visualchars code fullscreen",
-            "insertdatetime media nonbreaking save table contextmenu directionality",
-            "emoticons template paste textcolor colorpicker textpattern"
-        ],
-        toolbar1: "insertfile undo redo | styleselect | fontselect | fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent",
-        toolbar2: "preview | link image media | forecolor backcolor emoticons",
-        plugin_preview_width: 1000
+include("auth/db_auth.php");
+
+?>
+
+<form class="management-main" onchange="">
+    <select style='font-size: 1.2em; width: 75%; display: block; margin-left: auto; margin-right: auto; padding: 10px;'>
+    
+    <?php
+
+    // #### fetch and display categories
+    $sql = "SELECT id, category FROM categories";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        echo "<option value='0'>Alle Kategorien</option>";
+        while($row = $result->fetch_assoc()) {
+            echo "<option value='".$row=["id"]."'>".$row["category"]."</option>";
+        }
+    } else {
+        echo "<option value='0'>Keine Kategorien!</option>";
+    }
+    echo "</select><br><hr>";
+
+    // #### fetch articles
+    $sql = "SELECT * FROM articles";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $sql_dump = array();
+        while($row = $result->fetch_assoc()) {
+            $sql_dump[count($sql_dump)] = $row;
+        }
+    } else {
+        echo "Keine Artikel in dieser Kategorie!";
+    }
+    
+    $conn->close();
+
+    usort($sql_dump, function($a, $b) {
+        return $b["id"] - $a["id"];
     });
-</script>
 
-<textarea></textarea>
+    $count = 0;
+    foreach ($sql_dump as $entry) {
+
+        ?>
+
+        <div class="spacer"></div>
+
+        <section class="container">
+            <ul class="flex-container">
+                <li class="flex-item-article-name">
+                    <span class="flush-top flush-bottom"><?php echo $entry["title"]; ?></span>
+                </li>
+                <li class="flex-item-article-info">
+                    <span class="flush-top flush-bottom"><?php echo $entry["category"]; ?></span>
+                </li>
+                <li class="flex-item-article-info">
+                    <span class="flush-top flush-bottom">dd</span>
+                </li>
+                <li class="flex-item-article-info">
+                    <span class="flush-top flush-bottom">22</span>
+                </li>
+            </ul>
+        </section>
+
+        <?php
+
+        if ($count < count($entry) - 1) {
+            echo "<div class='spacer'></div>";
+        }
+
+        $count++;
+    }
+
+    ?>
+
+</form>
 
 <?php } ?>

@@ -21,7 +21,7 @@ if (isset($_GET["section"])) {
 } else {
     $section = "home";
     $resource = "docs/";
-    $file_type = "html";
+    $file_type = "php";
 }
 
 include($resource.$section.".".$file_type);
