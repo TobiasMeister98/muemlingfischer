@@ -129,7 +129,7 @@ for ($x = 0; $x < count($success); $x++) {
 
 <h1>Profil</h1>
 
-<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
     <div class="container">
         <h2 class="flush-top">Info</h2>  
 

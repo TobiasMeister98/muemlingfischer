@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 
-<?php session_start(); ?>
+<?php session_start();
+
+include("auth/db_auth.php");
+
+$pg_sql = "SELECT name
+        FROM page
+        WHERE id = 1
+        LIMIT 1";
+$pg_result = $conn->query($pg_sql);
+
+$pg_row = $pg_result->fetch_assoc();
+
+$conn->close();
+
+?>
 
 <html lang="de">
 <head>
     <meta charset="utf-8">
-    <title>Mümlingfischer</title>
+    <title><?php echo $pg_row["name"]; ?></title>
 
     <script src="js/page/noie.js"></script>
     
