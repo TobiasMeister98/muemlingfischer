@@ -9,12 +9,12 @@ if (isset($_POST["email"]) || isset($_POST["email2"])) {
     $email = $_POST["email"];
     $email2 = $_POST["email2"];
     
-    if ($email != $email2 || ($email == "" && $email2 != "") || ($email != "" && $email2 == "")) {
-        $error[count($error)] = "Die eingegebenen Email-Adressen stimmen nicht überein!";
-    } else if ($email == $email2 && $email != "" && $email2 != "") {
+    if ($email == $email2 && $email != "" && $email2 != "") {
         $change[count($change)] = "email";
         
         $success[count($success)] = "Email erfolgreich geändert.";
+    } else if ($email != $email2 || ($email == "" && $email2 != "") || ($email != "" && $email2 == "")) {
+        $error[count($error)] = "Die eingegebenen Email-Adressen stimmen nicht überein!";
     }
 }
 
@@ -36,12 +36,12 @@ if (isset($_POST["password"]) || isset($_POST["password2"])) {
     $password = $_POST["password"];
     $password2 = $_POST["password2"];
     
-    if ($password != $password2 || ($password == "" && $password2 != "") || ($password != "" && $password2 == "")) {
-        $error[count($error)] = "Die eingegebenen Passwörter stimmen nicht überein!";
-    } else if ($password == $password2 && $password != "" && $password2 != "") {
+    if ($password == $password2 && $password != "" && $password2 != "") {
         $change[count($change)] = "password";
         
         $success[count($success)] = "Passwort erfolgreich geändert.";
+    } else if ($password != $password2 || ($password == "" && $password2 != "") || ($password != "" && $password2 == "")) {
+        $error[count($error)] = "Die eingegebenen Passwörter stimmen nicht überein!";
     }
 }
 
@@ -129,7 +129,7 @@ for ($x = 0; $x < count($success); $x++) {
 
 <h1>Profil</h1>
 
-<form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
     <div class="container">
         <h2 class="flush-top">Info</h2>  
 

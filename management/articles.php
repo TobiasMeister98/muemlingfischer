@@ -5,27 +5,38 @@ include("auth/db_auth.php");
 ?>
 
 <!-- NEED TO FIX! -->
-<form id="articles" class="management" onchange="document.getElementById('articles').submit(); <?php header("location: ?category=".($_GET['category'] == "" ? "dd" : "dd")); ?>" method="get">
-    <select style="font-size: 1.2em; width: 75%; display: block; margin-left: auto; margin-right: auto; padding: 10px;">
+<form id="articles" class="articles" method="get">
+    <select id="management_category" onchange="window.location='?resource=management&section=articles&category=' + this.value;" style="font-size: 1.2em; width: 75%; display: block; margin-left: auto; margin-right: auto; padding: 10px;">
     
     <?php
 
     // #### fetch and display categories
     $sql = "SELECT id, category
-            FROM categories";
+            FROM categories
+            ORDER BY id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         echo "<option name='category' value='0'>Alle Kategorien</option>";
         
         while ($row = $result->fetch_assoc()) {
-            echo "<option name='category' value='".$row=["id"]."'>".$row["category"]."</option>";
+            echo "<option name='category' value='".$row["id"]."'";
+            
+            if (isset($_GET["category"])) {
+                $category = $_GET["category"];
+                
+                if ($row["id"] == $category) {
+                    echo " selected";
+                }
+            }
+            
+            echo ">".$row["category"]."</option>";
         }
     } else {
         echo "<option value='0'>Keine Kategorien!</option>";
     }
     echo "</select><br><hr>";
-
+    
     // #### fetch articles
     $sql = "SELECT articles.*, categories.category, users.nickname
             FROM articles
@@ -33,6 +44,16 @@ include("auth/db_auth.php");
             ON articles.category = categories.id
             INNER JOIN users
             ON articles.author = users.id";
+    
+    if (isset($_GET["category"])) {
+        $category = $_GET["category"];
+        
+        if ($category != "0") {
+            $sql .= " WHERE articles.category = $category";
+        }
+    }
+    
+    $sql .= " ORDER BY id DESC";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -41,11 +62,7 @@ include("auth/db_auth.php");
         while ($row = $result->fetch_assoc()) {
             $sql_dump[count($sql_dump)] = $row;
         }
-
-        usort($sql_dump, function($a, $b) {
-            return $b["id"] - $a["id"];
-        });
-
+        
         ?>
         
         <div class="container-small-nostyle">
@@ -68,9 +85,7 @@ include("auth/db_auth.php");
         <?php
         
         $count = 0;
-        foreach ($sql_dump as $entry) {
-
-            ?>
+        foreach ($sql_dump as $entry) { ?>
 
             <section class="container-small">
                 <ul class="flex-container">
@@ -106,7 +121,5 @@ include("auth/db_auth.php");
     ?>
 
 </form>
-
-<!--more-->
 
 <?php } ?>
