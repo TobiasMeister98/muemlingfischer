@@ -1,7 +1,7 @@
 <?php
 
 $section = "";
-$resource = "";
+$resource = "sites/";
 $file_type = "";
 
 if (isset($_GET["section"])) {
@@ -20,7 +20,6 @@ if (isset($_GET["section"])) {
     }
 } else {
     $section = "home";
-    $resource = "docs/";
     $file_type = "php";
 }
 

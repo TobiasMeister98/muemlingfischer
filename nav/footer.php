@@ -8,7 +8,7 @@
     <?php if (isset($_SESSION["isLoggedIn"]) === true) { ?>
     
     <li>
-        <a href='?resource=management&section=main' class='item'>Verwaltung</a>
+        <a href='management' class='item'>Verwaltung</a>
     </li>
     <li>
         <a href='?resource=user&section=profile' class='item'>Profil</a>
