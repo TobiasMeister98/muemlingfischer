@@ -1,14 +1,13 @@
-
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Erstellungszeit: 23. Mrz 2015 um 10:48
--- Server Version: 5.1.69
--- PHP-Version: 5.2.17
+-- Host: 127.0.0.1
+-- Erstellungszeit: 26. Mrz 2015 um 22:46
+-- Server Version: 5.6.21
+-- PHP-Version: 5.6.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `u695946261_fisch`
+-- Datenbank: `muemlingfischer`
 --
 
 -- --------------------------------------------------------
@@ -28,15 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `articles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`id` bigint(20) unsigned NOT NULL,
   `title` varchar(100) NOT NULL,
   `article` varchar(8000) NOT NULL,
   `author` bigint(20) unsigned NOT NULL,
   `category` bigint(20) unsigned NOT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Daten f√ºr Tabelle `articles`
@@ -54,12 +51,9 @@ INSERT INTO `articles` (`id`, `title`, `article`, `author`, `category`, `created
 --
 
 CREATE TABLE IF NOT EXISTS `categories` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `category` (`category`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+`id` bigint(20) unsigned NOT NULL,
+  `category` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Daten f√ºr Tabelle `categories`
@@ -80,11 +74,9 @@ INSERT INTO `categories` (`id`, `category`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `page` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+`id` bigint(20) unsigned NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten f√ºr Tabelle `page`
@@ -100,25 +92,72 @@ INSERT INTO `page` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`id` bigint(20) unsigned NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` binary(20) NOT NULL,
   `email` varchar(254) NOT NULL,
-  `nickname` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`),
-  KEY `id_2` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `nickname` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten f√ºr Tabelle `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `nickname`) VALUES
-(1, 'admin', '|Jç	 7bØaÂï î=¬dî¯î', 'admin@ig-muemlingfischer.de', 'IG-M&uuml;mlingfischer');
+(1, 'admin', 0x7c4a8d09ca3762af61e59520943dc26494f8941b, 'admin@ig-muemlingfischer.de', 'IG-M&uuml;mlingfischer');
 
+--
+-- Indizes der exportierten Tabellen
+--
+
+--
+-- Indizes f√ºr die Tabelle `articles`
+--
+ALTER TABLE `articles`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indizes f√ºr die Tabelle `categories`
+--
+ALTER TABLE `categories`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `category` (`category`);
+
+--
+-- Indizes f√ºr die Tabelle `page`
+--
+ALTER TABLE `page`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indizes f√ºr die Tabelle `users`
+--
+ALTER TABLE `users`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`), ADD UNIQUE KEY `username` (`username`), ADD UNIQUE KEY `email` (`email`), ADD KEY `id_2` (`id`);
+
+--
+-- AUTO_INCREMENT f√ºr exportierte Tabellen
+--
+
+--
+-- AUTO_INCREMENT f√ºr Tabelle `articles`
+--
+ALTER TABLE `articles`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT f√ºr Tabelle `categories`
+--
+ALTER TABLE `categories`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT f√ºr Tabelle `page`
+--
+ALTER TABLE `page`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT f√ºr Tabelle `users`
+--
+ALTER TABLE `users`
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
