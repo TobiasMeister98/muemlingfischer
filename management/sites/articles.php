@@ -1,12 +1,16 @@
 <?php if (!(isset($_SESSION["isLoggedIn"]))) { header("location: ?section=notloggedin"); exit; } else {
 
-include("auth/db_auth.php");
+include("../auth/db_auth.php");
 
 ?>
 
+<h1>Artikel - Editor</h1>
+
+<hr>
+
 <!-- NEED TO FIX! -->
 <form id="articles" class="articles" method="get">
-    <select id="management_category" onchange="window.location='?resource=management&section=articles&category=' + this.value;" style="font-size: 1.2em; width: 75%; display: block; margin-left: auto; margin-right: auto; padding: 10px;">
+    <select id="management_category" onchange="window.location='?section=articles&category=' + this.value;" style="font-size: 1.2em; width: 75%; display: block; margin-left: auto; margin-right: auto; padding: 10px;">
     
     <?php
 

@@ -103,14 +103,6 @@ for ($x = 0; $x < count($success); $x++) {
     </div>
 
     <div class="spacer-small"></div>
-
-    <div class="container">
-        <a href="?resource=management&section=articles">
-            <h2 class="flush-top flush-bottom">Zum Artikeleditor - WIP</h2>
-        </a>
-    </div>
-
-    <div class="spacer-small"></div>
     
     <div class="content-right">
         <input type="submit" value="Änderungen speichern">

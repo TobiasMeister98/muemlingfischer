@@ -26,6 +26,6 @@
     <?php } ?>
     
     <li>
-        <a href="?resource=docs&section=impressum" class="item">Impressum</a>
+        <a href="?section=impressum" class="item">Impressum</a>
     </li>
 </ul>
