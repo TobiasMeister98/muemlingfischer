@@ -1,55 +1,27 @@
 <!DOCTYPE html>
 
-<?php session_start();
+<?php
 
-include("auth/db_auth.php");
+/** Define and load the Website-Configuration */
+define( 'CONFIG', dirname(__FILE__) . '/pg-config.php' );
 
-$pg_sql = "SELECT name
-        FROM page
-        WHERE id = 1
-        LIMIT 1";
-$pg_result = $conn->query($pg_sql);
+require( CONFIG );
 
-$pg_row = $pg_result->fetch_assoc();
 
-$conn->close();
+/** 
+ * Define and load the Website-Info-Page
+ * Fetch Website-Title from database
+ */
+define( 'INFO', ABSPATH . 'pg-info.php' );
 
-?>
+require( INFO );
 
-<html lang="de">
-<head>
-    <meta charset="utf-8">
-    <title><?php echo $pg_row["name"]; ?></title>
 
-    <script src="js/page/noie.js"></script>
-    
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans'>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/favicon.ico">
-    
-    <link rel="stylesheet" href="css/slimbox2.css">
-</head>
+/** Initialize the session */
+session_start();
 
-<body>
-    <div class="wrapper-main">
-        <header>
-            <a href="/muemlingfischer"></a>
-        </header>
 
-        <nav>
-            <?php include("nav/nav.html"); ?>
-        </nav>
+/** Initialize the main panel */
+define( 'PANEL', ABSPATH . 'panel.php' );
 
-        <main>
-            <?php include("sites/index.php"); ?>
-        </main>
-
-        <footer>
-            <?php include("nav/footer.php"); ?>
-        </footer>
-    </div>
-    
-    <script src="js/jquery-2.1.3.min.js"></script>
-    <script src="js/slimbox2.js"></script>
-</body>
-</html>
+require( PANEL );
