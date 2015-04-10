@@ -54,14 +54,14 @@
         if ( in_array( 'email', $change ) ) {
             $queries[count( $queries )] = "UPDATE users
                                             SET email = '$email'
-                                            WHERE username = '" . $_SESSION["username"] . "'
+                                            WHERE username = '" . $_SESSION['username'] . "'
                                             LIMIT 1;";
         }
 
         if ( in_array( 'nickname', $change ) ) {
             $queries[count( $queries )] = "UPDATE users
                                             SET nickname = '$nickname'
-                                            WHERE username = '" . $_SESSION["username"] . "'
+                                            WHERE username = '" . $_SESSION['username'] . "'
                                             LIMIT 1;";
         }
 
@@ -105,15 +105,15 @@
             }
         } else {
             if ( $conn->multi_query( $sql ) === true ) {
-                if ( in_array( "email", $change ) ) {
-                    $_SESSION["email"] = $email;
+                if ( in_array( 'email', $change ) ) {
+                    $_SESSION['email'] = $email;
                 }
 
-                if ( in_array( "nickname", $change ) ) {
-                    $_SESSION["nickname"] = $nickname;
+                if ( in_array( 'nickname', $change ) ) {
+                    $_SESSION['nickname'] = $nickname;
                 }
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo 'Error: ' . $sql . '<br>' . $conn->error;
             }
         }
 
@@ -122,7 +122,7 @@
 
     /** echo errors and successful changes */
     for ( $x = 0; $x < count( $error ); $x++ ) {
-        echo '<span style="color: #f00;">'.$error[$x].'</span>';
+        echo '<span style="color: #f00;">' . $error[$x] . '</span>';
         echo '<br>';
     }
     for ( $x = 0; $x < count( $success ); $x++ ) {

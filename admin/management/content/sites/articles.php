@@ -21,7 +21,7 @@ if ( !isset( $_SESSION['isLoggedIn'] ) ) {
         if ( $conn->connect_error )
             die( 'Connection failed: ' . $conn->connect_error );
         
-        /** fetch and display categories */
+        /** Fetch and display categories */
         $sql = "SELECT id, category
                 FROM categories
                 ORDER BY id";
@@ -31,7 +31,7 @@ if ( !isset( $_SESSION['isLoggedIn'] ) ) {
             echo '<option name="category" value="0">Alle Kategorien</option>';
 
             while ( $row = $result->fetch_assoc() ) {
-                echo '<option name="category" value="'.$row['id'].'"';
+                echo '<option name="category" value="' . $row['id'] . '"';
 
                 if ( isset( $_GET['category'] ) ) {
                     $category = $_GET['category'];
@@ -41,14 +41,14 @@ if ( !isset( $_SESSION['isLoggedIn'] ) ) {
                     }
                 }
 
-                echo '>'.$row['category'].'</option>';
+                echo '>' . $row['category'] . '</option>';
             }
         } else {
             echo '<option value="0">Keine Kategorien!</option>';
         }
         echo '</select><br><hr>';
 
-        /** fetch articles */
+        /** Fetch articles */
         $sql = "SELECT articles.*, categories.category, users.nickname
                 FROM articles
                 INNER JOIN categories

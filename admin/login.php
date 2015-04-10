@@ -45,7 +45,7 @@ if ( isset( $_SESSION['isLoggedIn'] ) ) {
 
     <h1>Login</h1>
 
-    <form method="post" action="<?php $PHP_SELF; ?>">
+    <form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <table>
             <tr>
                 <td>Benutzername:</td>

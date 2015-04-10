@@ -7,7 +7,7 @@
 <ul>
     <?php
     
-    if ( isset( $_SESSION["isLoggedIn"] ) ) {
+    if ( isset( $_SESSION['isLoggedIn'] ) ) {
 
         ?>
 

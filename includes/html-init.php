@@ -2,8 +2,8 @@
 
 <html lang="de">
 
-<?php require(HTML_HEAD); ?>
+<?php require( HTML_HEAD ); ?>
 
-<?php require(HTML_BODY); ?>
+<?php require( HTML_BODY ); ?>
 
 </html>

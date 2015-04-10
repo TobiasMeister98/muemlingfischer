@@ -1,4 +1,4 @@
-<a href="<?php echo SITEURL ?>" class="logo">Home</a>
+<a href="<?php echo SITEURL; ?>" class="logo">Home</a>
 
 <ul>
     <li>

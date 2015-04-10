@@ -5,15 +5,15 @@
         </header>
 
         <nav>
-            <?php require(HTML_NAV); ?>
+            <?php require( HTML_NAV ); ?>
         </nav>
 
         <main>
-            <?php require(HTML_CONTENT); ?>
+            <?php require( HTML_CONTENT ); ?>
         </main>
 
         <footer>
-            <?php require(HTML_FOOTER); ?>
+            <?php require( HTML_FOOTER ); ?>
         </footer>
     </div>
     

@@ -1,24 +1,24 @@
 <?php
 
-if (isset($_SESSION["isLoggedIn"])) {
+if ( isset( $_SESSION['isLoggedIn'] ) ) {
     exit;
 }
 
-if (isset($_POST["username"]) && isset($_POST["password"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+if ( isset( $_POST['username'] ) && isset( $_POST['password'] ) ) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
     
-    $sha_pass = sha1($password);
+    $sha_pass = sha1( $password );
     
-    include("db_auth.php");
+    include( 'db_auth.php' );
     
-    $sql = "INSERT INTO users (username, password)
-            VALUES ('$username', HEX('$sha_pass')";
+    $sql = "INSERT INTO users ( username, password )
+            VALUES ( '$username', HEX( '$sha_pass' )";
     
-    if ($conn->query($sql) === true) {
-        echo "New record created successfully";
+    if ( $conn->query( $sql ) ===  true ) {
+        echo 'New record created successfully';
     } else {
-        echo "Error: ".$sql."<br>".$conn->error;
+        echo 'Error: ' . $sql . '<br>' . $conn->error;
     }
     
     $conn->close();
@@ -31,7 +31,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 <br>
 
 <div class="login-main">
-    <form name="login-form" method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+    <form name="login-form" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <table>
             <tr>
                 <td>Benutzername:</td>
